@@ -1,8 +1,10 @@
 const userModel = require('../models/user.model');
 const jwt = require("jsonwebtoken")
+const blacklistModel = require("../models/blacklist.model")
+const redis = require("../config/cache")
 
 
-async function authuser(req, res, next){
+async function authUser(req, res, next){
     const token = req.cookies.token;
 
     if(!token) {
@@ -37,4 +39,4 @@ async function authuser(req, res, next){
     }
 }
 
-module.exports = authuser;
+module.exports = {authUser};
