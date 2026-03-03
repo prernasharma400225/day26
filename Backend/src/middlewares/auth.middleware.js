@@ -9,7 +9,7 @@ async function authUser(req, res, next){
 
     if(!token) {
         return res.status(401).json({
-            message: "Token not provided in this server"
+            message: "Token not provided"
         })
     }
 
