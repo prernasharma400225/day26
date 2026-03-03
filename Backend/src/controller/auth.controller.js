@@ -118,7 +118,7 @@ async function logoutUser(req, res){
     await redis.set(token, Date.now().toString())
 
     await blacklistModel.create({
-        message: "logout successfully",
+        message: "logout successfully form blacklist",
     })
 }
 
