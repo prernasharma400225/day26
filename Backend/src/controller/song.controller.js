@@ -10,17 +10,18 @@ async function uploadSong(req, res){
 
     const tags = id3.read(songBuffer)
 
-    const songFile = await storageService.uploadFile({
+   const [songFile, posterFile] = await Promise.all([
+    storageService.uploadFile({
         buffer: songBuffer,
         filename: tags.title + ".mp3",
-        folder:"/cohort-2/moodify/songs"
-    })
-
-    const posterFile = await storageService.uploadFile({
+        folder: "/cohort-2/moodify/songs"
+    }),
+    storageService.uploadFile({
         buffer: tags.image.imageBuffer,
         filename: tags.title + ".jpg",
-        folder:"/cohort-2/moodify/posters"
+        folder: "/cohort-2/moodify/posters"
     })
+   ])
 
     const song = await songModel.create({
         title:tags.title,
