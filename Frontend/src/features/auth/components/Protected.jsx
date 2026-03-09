@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { Navigate, useNavigate } from 'react-router'
-
+import "./protected.scss"
 const Protected = ({children}) => {
 
     const {
@@ -11,12 +11,18 @@ const Protected = ({children}) => {
 
     
     if(loading) {
-        return <h1>loading</h1>
+        return <>
+        <nav>
+            <h1>Moodify</h1>
+            <button onClick={() => navigate("/login")}>Login</button>
+        </nav>
+        </>
     }
     
-    if(!loading && !user){
-        return <Navigate to="/login" />
-    }
+   if (!loading && !user) {
+  return <Navigate to="/login" />
+}
+   
     
   return  children
 }

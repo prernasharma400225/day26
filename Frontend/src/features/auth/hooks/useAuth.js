@@ -1,6 +1,7 @@
 import { login,register, getMe, logout } from "../services/auth.api";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../auth.context";
+import { Navigate } from "react-router";
 
 export const useAuth = () => {
     const context = useContext(AuthContext)
@@ -29,10 +30,11 @@ export const useAuth = () => {
     }
 
     async function handleLogout() {
-        setLoading(true)
-        const data = await logout()
-        setUser(data.user)
-        setLoading(false)
+        
+        await logout()
+        setUser(null)
+        
+        Navigate("/")
     }
 
     useEffect(() =>{
