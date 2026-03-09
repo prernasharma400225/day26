@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { detect, init } from "../utils/utils";
 
+import "../../shared/styles/button.scss";
+
 
 export default function FaceExpression({ onClick = () => { } }) {
     const videoRef = useRef(null);
@@ -40,7 +42,7 @@ export default function FaceExpression({ onClick = () => { } }) {
                 playsInline
             />
             <h2>{expression}</h2>
-            <button onClick={handleClick} >Detect expression</button>
+            <button className="button" onClick={handleClick} >Detect expression</button>
         </div>
     );
 }

@@ -30,11 +30,12 @@ export const useAuth = () => {
     }
 
     async function handleLogout() {
-        
+        setLoading
         await logout()
         setUser(null)
+        setLoading(false)
         
-        Navigate("/")
+       
     }
 
     useEffect(() =>{
